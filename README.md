@@ -9,7 +9,7 @@ The application allows users to create forms, add and manage questions, publish 
 ## 🔗 Links
 
 ### Live Application
-https://typeform-clone-frontend-nine.vercel.app
+https://typefrom-clone-frontend-nine.vercel.app
 
 ### Backend API
 https://typefrom-clone-backend-p3hh.onrender.com
