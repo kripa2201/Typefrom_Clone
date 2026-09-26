@@ -144,7 +144,20 @@ def delete_form(
     return {
         "message": "Form deleted successfully"
     }
+@app.post("/forms/{form_id}/duplicate")
+def duplicate_form(
+    form_id: int,
+    db: Session = Depends(get_db)
+):
+    form = crud.duplicate_form(db, form_id)
 
+    if not form:
+        raise HTTPException(
+            status_code=404,
+            detail="Form not found"
+        )
+
+    return form
 
 # =========================================================
 # PUBLISH / UNPUBLISH

@@ -27,11 +27,20 @@ def create_form(
 
 
 def get_forms(db: Session):
-    return (
+    forms = (
         db.query(models.Form)
         .order_by(models.Form.created_at.desc())
         .all()
     )
+
+    for form in forms:
+        form.response_count = (
+            db.query(models.Response)
+            .filter(models.Response.form_id == form.id)
+            .count()
+        )
+
+    return forms
 
 
 def get_form(
@@ -80,6 +89,50 @@ def delete_form(
     db.commit()
 
     return form
+
+def duplicate_form(
+    db: Session,
+    form_id: int
+):
+    original_form = get_form(db, form_id)
+
+    if not original_form:
+        return None
+
+    # Create the duplicated form
+    new_form = models.Form(
+        title=f"{original_form.title} (Copy)",
+        description=original_form.description,
+        status="draft",
+        creator_id=original_form.creator_id
+    )
+
+    db.add(new_form)
+    db.flush()
+
+    # Duplicate all questions
+    original_questions = get_questions(
+        db,
+        original_form.id
+    )
+
+    for question in original_questions:
+        new_question = models.Question(
+            form_id=new_form.id,
+            type=question.type,
+            title=question.title,
+            description=question.description,
+            required=question.required,
+            position=question.position,
+            settings=question.settings
+        )
+
+        db.add(new_question)
+
+    db.commit()
+    db.refresh(new_form)
+
+    return new_form
 
 
 # =========================================================

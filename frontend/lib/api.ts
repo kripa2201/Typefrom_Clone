@@ -54,7 +54,9 @@ export async function updateForm(
     title?: string;
     description?: string;
   }
-) {
+) 
+
+{
   const response = await fetch(
     `${API_URL}/forms/${formId}`,
     {
@@ -71,6 +73,25 @@ export async function updateForm(
 
     throw new Error(
       error?.detail || "Failed to update form"
+    );
+  }
+
+  return response.json();
+}
+
+export async function duplicateForm(formId: number) {
+  const response = await fetch(
+    `${API_URL}/forms/${formId}/duplicate`,
+    {
+      method: "POST",
+    }
+  );
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => null);
+
+    throw new Error(
+      error?.detail || "Failed to duplicate form"
     );
   }
 

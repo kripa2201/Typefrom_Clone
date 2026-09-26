@@ -8,6 +8,7 @@ import {
   createForm,
   createQuestion,
   generateFormWithAI,
+   duplicateForm
 } from "@/lib/api";
 
 interface Form {
@@ -19,6 +20,7 @@ interface Form {
   created_at: string;
   updated_at: string;
   creator_id: number;
+  response_count: number;
 }
 
 export default function Home() {
@@ -447,9 +449,7 @@ const [aiLoading, setAiLoading] = useState(false);
               Updated
             </div>
 
-            <div>
-              Integrations
-            </div>
+            
 
           </div>
 
@@ -512,15 +512,13 @@ const [aiLoading, setAiLoading] = useState(false);
                   </div>
 
 
-                  <div className="text-sm text-gray-400">
-                    -
-                  </div>
+                  <div className="text-sm text-gray-600">
+  {form.response_count ?? 0}
+</div>
 
-
-                  <div className="text-sm text-gray-400">
-                    -
-                  </div>
-
+<div className="text-sm text-gray-600">
+  {form.response_count ?? 0}
+</div>
 
                   <div className="text-sm text-gray-600">
                     {new Date(form.updated_at).toLocaleDateString(
@@ -534,9 +532,28 @@ const [aiLoading, setAiLoading] = useState(false);
                   </div>
 
 
-                  <div className="text-lg text-gray-500">
-                    ⊞
-                  </div>
+                  <div
+  onClick={async (e) => {
+    e.stopPropagation();
+
+    try {
+      await duplicateForm(form.id);
+      alert("Form duplicated successfully");
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      alert(
+        error instanceof Error
+          ? error.message
+          : "Failed to duplicate form"
+      );
+    }
+  }}
+  className="text-lg text-gray-500 hover:text-black cursor-pointer"
+  title="Duplicate form"
+>
+  ⊞
+</div>
 
                 </button>
 
