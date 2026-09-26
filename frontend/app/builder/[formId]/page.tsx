@@ -767,8 +767,8 @@ export default function Builder({
       );
 
       alert(
-        `Form published!\n\nPublic link:\nhttp://localhost:3000/forms/${result.slug}`
-      );
+  `Form published!\n\nPublic link:\n${window.location.origin}/forms/${result.slug}`
+);
 
     } catch (error) {
 
@@ -905,12 +905,12 @@ export default function Builder({
   Share
 </button>
 
-          <button
-            onClick={handlePublish}
-            className="rounded-xl bg-[#2f2633] px-5 py-2 text-sm font-medium text-white hover:bg-black"
-          >
-            Publish
-          </button>
+         <button
+  onClick={handlePublish}
+  className="rounded-xl bg-[#2f2633] px-5 py-2 text-sm font-medium text-white hover:bg-black"
+>
+  {form.status === "published" ? "Unpublish" : "Publish"}
+</button>
 
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#f8c9d5] text-xs">
             KK
