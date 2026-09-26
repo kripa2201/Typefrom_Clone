@@ -766,8 +766,8 @@ export default function Builder({
           : previous
       );
 
-      alert(
-  `Form published!\n\nPublic link:\n${window.location.origin}/forms/${result.slug}`
+     alert(
+  `Form published!\n\nPublic link:\nhttps://typeform-clone-frontend-nine.vercel.app/forms/${result.slug}`
 );
 
     } catch (error) {
