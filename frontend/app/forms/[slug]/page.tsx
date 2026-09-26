@@ -77,10 +77,13 @@ export default function PublicForm({
     loadForm();
   }, [params]);
 
-  async function getFormBySlug(currentSlug: string) {
-    const response = await fetch(
-  `http://localhost:8000/public/forms/${currentSlug}`
-);
+ async function getFormBySlug(currentSlug: string) {
+  const API_URL =
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+  const response = await fetch(
+    `${API_URL}/public/forms/${currentSlug}`
+  );
 
     if (!response.ok) {
       throw new Error("Form not found");
