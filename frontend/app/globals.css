@@ -1,0 +1,783 @@
+@import "tailwindcss";
+
+/* =========================================================
+   TYPEFORM-INSPIRED GLOBAL CSS
+   ========================================================= */
+
+:root {
+  --tf-bg: #ffffff;
+  --tf-surface: #ffffff;
+  --tf-surface-soft: #fafafa;
+
+  --tf-text: #302733;
+  --tf-text-secondary: #686169;
+  --tf-text-muted: #99929a;
+
+  --tf-border: #e8e5e8;
+  --tf-border-dark: #d8d3d8;
+
+  --tf-dark: #302733;
+  --tf-dark-hover: #211c24;
+
+  --tf-blue: #e8f1ff;
+  --tf-purple: #eee8ff;
+  --tf-pink: #ffe9ef;
+  --tf-green: #e6f7ed;
+  --tf-yellow: #fff3d2;
+  --tf-gray: #eeeeee;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html {
+  background: #ffffff;
+}
+
+body {
+  background: #ffffff;
+  color: var(--tf-text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+  line-height: 1.45;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================================================
+   FORM ELEMENTS
+   ========================================================= */
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+input,
+textarea,
+select {
+  color: var(--tf-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #aaa4aa;
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(48, 39, 51, 0.18);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #e8e2eb;
+  color: #302733;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d8d3d8;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #bdb7bd;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d8d3d8 transparent;
+}
+
+/* =========================================================
+   TYPEFORM BUTTONS
+   ========================================================= */
+
+.tf-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 40px;
+  padding: 0 16px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: var(--tf-dark);
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.tf-button:hover {
+  background: var(--tf-dark-hover);
+}
+
+.tf-button:active {
+  transform: scale(0.98);
+}
+
+.tf-button-secondary {
+  background: #ffffff;
+  color: var(--tf-text);
+  border-color: var(--tf-border-dark);
+}
+
+.tf-button-secondary:hover {
+  background: #f8f7f8;
+}
+
+/* =========================================================
+   BUILDER
+   ========================================================= */
+
+.tf-builder {
+  width: 100%;
+  min-height: 100vh;
+  background: #ffffff;
+  color: var(--tf-text);
+}
+
+/* =========================================================
+   BUILDER HEADER
+   ========================================================= */
+
+.tf-builder-header {
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+/* =========================================================
+   TOOLBAR
+   ========================================================= */
+
+.tf-builder-toolbar {
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 20px;
+  gap: 18px;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+/* =========================================================
+   SIDEBARS
+   ========================================================= */
+
+.tf-sidebar {
+  background: #fafafa;
+}
+
+.tf-left-sidebar {
+  width: 225px;
+  flex-shrink: 0;
+
+  background: #fafafa;
+  border-right: 1px solid var(--tf-border);
+}
+
+.tf-right-sidebar {
+  width: 290px;
+  flex-shrink: 0;
+
+  background: #fafafa;
+  border-left: 1px solid var(--tf-border);
+}
+
+/* =========================================================
+   SIDEBAR ITEMS
+   ========================================================= */
+
+.tf-sidebar-item {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: transparent;
+
+  text-align: left;
+
+  transition:
+    background 120ms ease,
+    border-color 120ms ease;
+}
+
+.tf-sidebar-item:hover {
+  background: #ffffff;
+}
+
+.tf-sidebar-item.active {
+  background: #ffffff;
+  border-color: #ddd8dd;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+/* =========================================================
+   QUESTION CARD
+   ========================================================= */
+
+.tf-question-card {
+  background: #ffffff;
+
+  border: 1px solid var(--tf-border);
+  border-radius: 16px;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.tf-question-card:hover {
+  border-color: #ddd9dd;
+}
+
+/* =========================================================
+   QUESTION TITLE
+   ========================================================= */
+
+.tf-question-title {
+  width: 100%;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--tf-text);
+
+  font-size: 24px;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.tf-question-description {
+  width: 100%;
+
+  border: 0;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--tf-text-muted);
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.tf-input {
+  width: 100%;
+  min-height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid var(--tf-border-dark);
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: var(--tf-text);
+
+  outline: none;
+
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.tf-input:hover {
+  border-color: #bdb7bd;
+}
+
+.tf-input:focus {
+  border-color: #8f878f;
+
+  box-shadow:
+    0 0 0 3px rgba(48, 39, 51, 0.05);
+}
+
+/* =========================================================
+   ADD CONTENT
+   ========================================================= */
+
+.tf-add-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 42px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: var(--tf-dark);
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.tf-add-content:hover {
+  background: var(--tf-dark-hover);
+}
+
+.tf-add-content:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   MODAL OVERLAY
+   ========================================================= */
+
+.tf-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(35, 29, 36, 0.42);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.tf-modal {
+  width: min(1080px, calc(100vw - 32px));
+  max-height: 90vh;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================================================
+   MODAL HEADER
+   ========================================================= */
+
+.tf-modal-header {
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 28px;
+
+  background: #ffffff;
+  border-bottom: 1px solid var(--tf-border);
+}
+
+.tf-modal-tab {
+  position: relative;
+
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #8c858d;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.tf-modal-tab.active {
+  color: var(--tf-text);
+}
+
+.tf-modal-tab.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 2px;
+
+  border-radius: 999px;
+
+  background: var(--tf-dark);
+}
+
+/* =========================================================
+   MODAL ELEMENT
+   ========================================================= */
+
+.tf-element {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 7px 8px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: transparent;
+
+  text-align: left;
+
+  transition: background 120ms ease;
+}
+
+.tf-element:hover {
+  background: #f6f5f6;
+}
+
+.tf-element-title {
+  color: #504950;
+  font-size: 13px;
+}
+
+.tf-element:hover .tf-element-title {
+  color: #302733;
+}
+
+/* =========================================================
+   QUESTION TYPE COLORS
+   ========================================================= */
+
+.tf-icon-blue {
+  background: var(--tf-blue);
+}
+
+.tf-icon-purple {
+  background: var(--tf-purple);
+}
+
+.tf-icon-pink {
+  background: var(--tf-pink);
+}
+
+.tf-icon-green {
+  background: var(--tf-green);
+}
+
+.tf-icon-yellow {
+  background: var(--tf-yellow);
+}
+
+.tf-icon-gray {
+  background: var(--tf-gray);
+}
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.tf-settings-card {
+  background: #ffffff;
+  border-radius: 14px;
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.tf-settings-section {
+  padding: 18px 0;
+  border-top: 1px solid var(--tf-border);
+}
+
+.tf-settings-label {
+  color: var(--tf-text);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   TOGGLE
+   ========================================================= */
+
+.tf-toggle {
+  position: relative;
+
+  width: 42px;
+  height: 24px;
+
+  flex-shrink: 0;
+
+  border: 0;
+  border-radius: 999px;
+
+  background: #ddd9dd;
+
+  transition: background 150ms ease;
+}
+
+.tf-toggle.active {
+  background: var(--tf-dark);
+}
+
+.tf-toggle::after {
+  content: "";
+
+  position: absolute;
+
+  top: 4px;
+  left: 4px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12);
+
+  transition: transform 150ms ease;
+}
+
+.tf-toggle.active::after {
+  transform: translateX(18px);
+}
+
+/* =========================================================
+   CHOICE
+   ========================================================= */
+
+.tf-choice {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 42px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--tf-border-dark);
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  transition:
+    border-color 120ms ease,
+    background 120ms ease;
+}
+
+.tf-choice:hover {
+  background: #fafafa;
+  border-color: #c9c3c9;
+}
+
+/* =========================================================
+   SOFT CARD
+   ========================================================= */
+
+.tf-soft-card {
+  background: #fafafa;
+
+  border: 1px solid var(--tf-border);
+
+  border-radius: 14px;
+}
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.tf-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--tf-border);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes tf-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes tf-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98) translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes tf-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tf-fade-in {
+  animation: tf-fade-in 150ms ease-out;
+}
+
+.tf-modal-in {
+  animation: tf-modal-in 160ms ease-out;
+}
+
+.tf-slide-up {
+  animation: tf-slide-up 180ms ease-out;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .tf-right-sidebar {
+    width: 260px;
+  }
+
+  .tf-left-sidebar {
+    width: 210px;
+  }
+}
+
+@media (max-width: 800px) {
+  .tf-right-sidebar {
+    display: none;
+  }
+
+  .tf-left-sidebar {
+    width: 190px;
+  }
+}
+
+@media (max-width: 640px) {
+  .tf-left-sidebar {
+    display: none;
+  }
+
+  .tf-builder-toolbar {
+    padding: 0 12px;
+  }
+
+  .tf-builder-header {
+    padding: 0 12px;
+  }
+}
